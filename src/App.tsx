@@ -1,24 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
+import form  from './components/form/form';
 import './App.css';
+
+const url = ' http://146.185.154.90:8000/messages'
+
+const run = async() => {
+  const messages = await fetch(url);
+  const responseMessage = await messages.json();
+  const data = new URLSearchParams();
+  data.set('message', 'He!');
+  data.set('author', 'John');
+  const response = await fetch(url, {
+    method: 'post',
+    body: data,
+  });
+}
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <form/>
     </div>
   );
 }
