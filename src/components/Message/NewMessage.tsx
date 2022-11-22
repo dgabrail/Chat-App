@@ -1,13 +1,18 @@
 import React from 'react'
+interface Props {
+  name: string;
+  message: string;
+  date: string
+}
 
-const newMessage = () => {
+const NewMessage: React.FC<Props> = ({date , name , message}) => {
   return (
     <div>
-      <div></div>
-      <div></div>
-      <div></div>
+      <div>{name}</div>
+      <div>{message}</div>
+      <div>{date}</div>
     </div>
   )
 }
 
-export default newMessage
+export default NewMessage
