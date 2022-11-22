@@ -7,6 +7,12 @@ const url = ' http://146.185.154.90:8000/messages'
 const run = async() => {
   const messages = await fetch(url);
   const responseMessage = await messages.json();
+  console.log(responseMessage)
+}
+
+run()
+
+const uuu = async() => {
   const data = new URLSearchParams();
   data.set('message', 'He!');
   data.set('author', 'John');
