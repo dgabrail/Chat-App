@@ -2,7 +2,7 @@ import React from 'react'
 
 const form = () => {
   return (
-    <>
+    <div>
       <form style={{textAlign: 'left'}}>
       <div className='form-group'>
       <span>Ввод автора:</span>
@@ -14,7 +14,7 @@ const form = () => {
       </div>
       <button className='btn btn-primary mt-3'>Submit</button>
       </form>
-    </>
+    </div>
   )
 }
 
