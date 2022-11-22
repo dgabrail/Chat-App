@@ -4,22 +4,15 @@ import NewMessage from './components/Message/NewMessage';
 import { Message } from './types';
 import './App.css';
 
-const url = ' http://146.185.154.90:8000/messages'
-const [message , setMessage] = useState<Message>({
-  author: '',
-  datetime: '',
-  id: '',
-  message: ''
 
-})
+function App() {
 
-const run = async() => {
+  const url = ' http://146.185.154.90:8000/messages'
+  const [responseMessage , setResponseMessage] = useState<Message[]>([])
+  const run = async() => {
   const messages = await fetch(url);
-  const responseMessage: Message[]  = await messages.json()
-  responseMessage.map(message => (
-    <NewMessage message={message.message} date={message.datetime} name={message.message}/>
-  ))
-
+  const response = await messages.json()
+  setResponseMessage(response)
 
   // responseMessage.map(string => {
   //   setMessage(prev => ({
@@ -33,21 +26,38 @@ const run = async() => {
 
 run()
 
-const uuu = async() => {
-  const data = new URLSearchParams();
-  data.set('message', 'He!');
-  data.set('author', 'John');
-  const response = await fetch(url, {
-    method: 'post',
-    body: data,
-  });
+let string = '';
+let author = '';
+
+const refaktorString = (event: React.ChangeEvent<HTMLInputElement>) => {
+  string = event.target.value
+}
+
+const refaktorAuthor = (event: React.ChangeEvent<HTMLInputElement>) => {
+  author = event.target.value
 }
 
 
-function App() {
+const newMessage = async(event: React.FormEvent) => {
+  event.preventDefault
+  const data = new URLSearchParams();
+  data.set('message', string);
+  data.set('author', author);
+  const respons = await fetch(url, {
+    method: 'post',
+    body: data,
+  });
+  const messages = await fetch(url);
+  const response = await messages.json()
+  setResponseMessage(response)
+}
+
   return (
     <div className="App">
-      <Form/>
+      <Form refactorAuthor={refaktorAuthor} refactorString={refaktorString} uuu={newMessage}/>
+      {responseMessage.map((string , index) => (
+        <NewMessage  key={index} message={string.message} name={string.author}/>
+      ))}
     </div>
   );
 }
