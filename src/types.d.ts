@@ -1,6 +1,4 @@
-export interface Message {
-    id: string, 
+export interface MessageType {
     message: string, 
     author: string, 
-    datetime: string
 }
