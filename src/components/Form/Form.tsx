@@ -5,7 +5,7 @@ interface Props {
 
 const url = ' http://146.185.154.90:8000/messages';
 
-const Form: React.FC<Props> = ({ }) => {
+const Form: React.FC<Props> = ({}) => {
 
   const [message, setMessage] = useState<MessageType>({
     author: '',
@@ -18,14 +18,11 @@ const Form: React.FC<Props> = ({ }) => {
       ...prev,
       [name]: value
     }))
-    console.log(e.target)
   };
 
 
   const newMessage = async (e: React.FormEvent,) => {
-    console.log(e)
     e.preventDefault();
-    console.log(e)
     const data = new URLSearchParams();
     data.set('message', message.message);
     data.set('author', message.author);

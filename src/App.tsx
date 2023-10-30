@@ -15,7 +15,9 @@ function App() {
     setResponseMessage(response);
   }
 
-  setInterval(() => { run() }, 2000);
+  useEffect(() => {
+    setInterval(() => { run() }, 2000);
+  }, []);
 
   return (
     <div className="App">
